@@ -5,4 +5,3 @@ airports.sqlite
 cars.sqlite
 /project/reporttest.py
 /project/visualize.py
-!/data/*.csv
