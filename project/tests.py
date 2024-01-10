@@ -12,7 +12,7 @@ class TestDataPipeline(unittest.TestCase):
             self.fail(f"Data pipeline execution failed with error: {e}")
 
         output_file1 = 'data/crime_data.xlsx'
-        output_file2 = 'data/demographic_data.xlsx'
+        output_file2 = 'data/population_density_data.xlsx'
         output_file3 = 'data/income_data.xlsx'
 
         self.assertTrue(os.path.exists(output_file1), f"{output_file1} does not exist")
