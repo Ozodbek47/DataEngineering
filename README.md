@@ -1,9 +1,12 @@
 # Analyzing Crime Rates in Uzbekistan: A Demographic Perspective
 
-This project's goal is to analyze the dynamics of crime rates in Uzbekistan by integrating crime statistics with demographic data, including population density and income levels. We aim to identify potential correlations and causalities between these variables. <br>
-Go to the `[project/report.ipynb](https://github.com/Ozodbek47/DataEngineering/blob/main/project/report.ipynb)` for the main code and more information.
+This project's goal is to analyze the dynamics of crime rates in Uzbekistan by integrating crime statistics with demographic data, including population density and income levels.
 
-### To download, preprocess and store the necessary datasets from stat.uz in the `data` folder, run:
+We aim to identify potential correlations and causalities between these variables.
+
+**Go to the [project/report.ipynb](https://github.com/Ozodbek47/DataEngineering/blob/main/project/report.ipynb) for the main code and more information.**
+
+#### To download, preprocess and store the necessary datasets from stat.uz in the `data` folder, run:
 
 ```bash
 python3 project/pipeline.py
