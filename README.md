@@ -6,6 +6,10 @@ We aim to identify potential correlations and causalities between these variable
 
 **Go to the [project/report.ipynb](https://github.com/Ozodbek47/DataEngineering/blob/main/project/report.ipynb) for the main code and more information.**
 
+**You can find the presentation slides of the project at [project/slides.pdf](https://github.com/Ozodbek47/DataEngineering/blob/main/project/slides.pdf)**
+
+**Presentation video of the project is available at [project/presentation-video.mp4](https://github.com/Ozodbek47/DataEngineering/blob/main/project/presentation-video.mp4)**
+
 #### To download, preprocess and store the necessary datasets from stat.uz in the `data` folder, run:
 
 ```bash
