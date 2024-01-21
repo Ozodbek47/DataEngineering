@@ -17,30 +17,16 @@ with zipfile.ZipFile(zip_file_path, 'r') as z_ref:
 df = pd.read_csv(csv_file_name, sep=';', decimal=',', usecols=range(11), names=["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Latitude (WGS84)","Longitude (WGS84)","Verschleierung (m)","Aufenthaltsdauer im Freien (ms)", "Batterietemperatur in °C", "Geraet aktiv"], header=0)
 df.to_csv('data/data0.csv')
 
-# print(1)
-# print(df.head())
-
 selected_columns = ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"]
 df = df[selected_columns]
 df = df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
 
-# print(2)
-# print(df.head())
-# df.to_csv('data/data1.csv')
-
 # Transforming the data
 df[["Temperatur", "Batterietemperatur"]] = df[["Temperatur", "Batterietemperatur"]].apply(lambda x: (x * 9/5) + 32)
-
-# df.to_csv('data/data2.csv')
 
 # Validating the data
 df = df[df["Geraet"] > 0]
 df = df[df["Monat"] <= 12]
-
-# print(3)
-# print(df.head())
-
-# df.to_csv('data/data3.csv')
 
 # SQLite
 sqlite_types = {"Geraet": "BIGINT", "Hersteller": "TEXT", "Model": "TEXT", "Monat": "BIGINT", "Temperatur": "FLOAT", "Batterietemperatur": "FLOAT", "Geraet aktiv": "TEXT"}
