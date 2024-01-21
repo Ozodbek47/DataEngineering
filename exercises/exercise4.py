@@ -21,6 +21,9 @@ df = df[selected_columns]
 df = df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
 
 # Transforming the data
+df["Temperatur"] = df["Temperatur"].replace(',', '.')
+df["Batterietemperatur"] = df["Batterietemperatur"].replace(',', '.')
+
 df["Temperatur"] = (df["Temperatur"] * 9/5) + 32
 df["Batterietemperatur"] = (df["Batterietemperatur"] * 9/5) + 32
 
