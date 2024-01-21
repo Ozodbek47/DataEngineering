@@ -15,7 +15,6 @@ with zipfile.ZipFile(zip_file_path, 'r') as z_ref:
 
 # Reshaping the data
 df = pd.read_csv(csv_file_name, sep=';', decimal=',', usecols=range(11), names=["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Latitude (WGS84)","Longitude (WGS84)","Verschleierung (m)","Aufenthaltsdauer im Freien (ms)", "Batterietemperatur in °C", "Geraet aktiv"], header=0)
-df.to_csv('data/data0.csv')
 
 selected_columns = ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"]
 df = df[selected_columns]
