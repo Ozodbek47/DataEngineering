@@ -14,15 +14,18 @@ with zipfile.ZipFile(zip_file_path, 'r') as z_ref:
     z_ref.extract(csv_file_name, '.')
 
 # Reshaping the data
-df = pd.read_csv(csv_file_name, delimiter=';', usecols=range(12), decimal=",")
+df = pd.read_csv(csv_file_name, delimiter=';', usecols=range(12))
 
 selected_columns = ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"]
 df = df[selected_columns]
 df = df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
 
 # Transforming the data
-df["Temperatur"] = (df["Temperatur"] * 9/5) + 32
-df["Batterietemperatur"] = (df["Batterietemperatur"] * 9/5) + 32
+temperature_columns = ["Temperatur", "Batterietemperatur"]
+
+for column in temperature_columns:
+    df[column] = df[column].apply(lambda x: float(x.replace(',', '.')) if pd.notna(x) else pd.NA)
+    df[column] = (df[column] * 9/5) + 32
 
 # Validating the data
 df = df[df["Geraet"] > 0]
