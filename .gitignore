@@ -5,3 +5,7 @@ airports.sqlite
 cars.sqlite
 /project/reporttest.py
 /project/visualize.py
+data.csv
+mowesta-dataset.zip
+README.pdf
+temperatures.sqlite
