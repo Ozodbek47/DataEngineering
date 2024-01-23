@@ -1,8 +1,7 @@
 pipeline GtfsPipeline {
 
-    GTFSSampleFeedExtractor -> ZipArchiveInterpreter;
-
-    ZipArchiveInterpreter
+    GTFSExtractor
+        -> ZipArchiveInterpreter
         -> StopsFilePicker 
         -> StopsTextFileInterpreter
         -> StopsCSVInterpreter 
@@ -10,7 +9,7 @@ pipeline GtfsPipeline {
         -> StopsTableInterpreter 
         -> StopsLoader;
 
-    block GTFSSampleFeedExtractor oftype HttpExtractor {
+    block GTFSExtractor oftype HttpExtractor {
         url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
     }
 
@@ -22,10 +21,10 @@ pipeline GtfsPipeline {
         path: "/stops.txt";
     }
 
-    block StopsTextFileInterpreter oftype TextFileInterpreter { }
-    block StopsCSVInterpreter oftype CSVInterpreter { }
+    block StopsTextFileInterpreter oftype TextFileInterpreter { encoding: "latin2"; }
+    block StopsCSVInterpreter oftype CSVInterpreter { enclosing: '"'; } // enclosing: '"';
 
-    block StopsColumnDeleter oftype ColumnDeleter { delete: [column B, column D, column H, column I, column J, column K, column L]; }
+    block StopsColumnDeleter oftype ColumnDeleter { delete: [column B, column D, column H, column I, column J, column K, column L,]; }
 
     block StopsTableInterpreter oftype TableInterpreter {
         header: false;
@@ -34,15 +33,15 @@ pipeline GtfsPipeline {
             "stop_name" oftype text,
             "stop_lat" oftype coordinatetype,
             "stop_lon" oftype coordinatetype,
-            "zone_id" oftype zonetype
+            "zone_id" oftype integer
         ];
     }
 
     constraint GeographicCoordinate oftype RangeConstraint { lowerBound: -90; lowerBoundInclusive: true; upperBound: 90; upperBoundInclusive: true;}
     valuetype coordinatetype oftype decimal { constraints: [ GeographicCoordinate ]; }
 
-    constraint allowedzone oftype AllowlistConstraint { allowlist: ['2001']; }
-    valuetype zonetype oftype integer { constraints: [ allowedzone ]; }
+    // constraint allowedzone oftype AllowlistConstraint { allowlist: ['2001']; }
+    // valuetype zonetype oftype integer { constraints: [ allowedzone ]; }
 
     block StopsLoader oftype SQLiteLoader { table: "stops"; file: "./gtfs.sqlite"; }
 
