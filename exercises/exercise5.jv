@@ -22,7 +22,7 @@ pipeline GtfsPipeline {
         path: "/stops.txt";
     }
 
-    block StopsTextFileInterpreter oftype TextFileInterpreter { encoding: "latin2"; }
+    block StopsTextFileInterpreter oftype TextFileInterpreter { }
     block StopsCSVInterpreter oftype CSVInterpreter { }
 
     block StopsColumnDeleter oftype ColumnDeleter { delete: [column B, column D, column H, column I, column J, column K, column L]; }
