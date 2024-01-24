@@ -21,7 +21,7 @@ pipeline GtfsPipeline {
         path: "/stops.txt";
     }
 
-    block StopsTextFileInterpreter oftype TextFileInterpreter { encoding: "latin4"; }
+    block StopsTextFileInterpreter oftype TextFileInterpreter { encoding: "utf8"; }
     block StopsCSVInterpreter oftype CSVInterpreter { enclosing: '"'; }
 
     block StopsColumnDeleter oftype ColumnDeleter { delete: [column B, column D, column H, column I, column J, column K, column L,]; }
